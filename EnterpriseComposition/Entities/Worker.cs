@@ -21,6 +21,26 @@ namespace EnterpriseComposition.Entities
             Level = level;
             BaseSalary = baseSalary;
             Department = department;
+            //não inclui contracts no construtor pois ele tem varias entradas, por isso não recebe no inicio
+        }
+
+        public void AddContract(HourContract contract){
+            Contracts.Add(contract);
+        }
+
+        public void RemoveContract(HourContract contract){
+            Contracts.Remove(contract);
+        }
+
+        public double Income(int year, int month){
+            double sum = BaseSalary;
+            foreach(HourContract contract in Contracts){
+                if(contract.Date.Year == year && contract.Date.Month == month){
+                    sum += contract.TotalValue();
+                }
+            }
+
+            return sum;
         }
     }
 }
