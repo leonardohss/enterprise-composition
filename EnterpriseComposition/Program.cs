@@ -21,12 +21,12 @@ namespace EnterpriseComposition
             double baseSalary = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
             
             Department dept = new Department(deptName);
-            Worker worker = new Worker(name, level, baseSalary);
+            Worker worker = new Worker(name, level, baseSalary, dept);
 
             Console.Write("How many contracts to this worker? ");
-            int n = int.Parse(Console.ReadLine);
+            int n = int.Parse(Console.ReadLine());
 
-            for (int i = 1; i < n; i++){
+            for (int i = 1; i <= n; i++){
                 Console.WriteLine($"Enter #{i} contract data: ");
                 Console.Write("Date (dd/mm/yyyy): ");
                 DateTime date = DateTime.Parse(Console.ReadLine());
@@ -34,8 +34,8 @@ namespace EnterpriseComposition
                 double valuePerHour = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
                 Console.Write("Duration (hours): ");
                 int hours = int.Parse(Console.ReadLine());
-                HoursContract contract = new HoursContract(date, valuePerHour, hours);
-                Worker.AddContract(contract);
+                HourContract contract = new HourContract(date, valuePerHour, hours);
+                worker.AddContract(contract);
             }
 
             Console.WriteLine();
@@ -46,7 +46,7 @@ namespace EnterpriseComposition
 
             Console.WriteLine("Name: " + worker.Name);
             Console.WriteLine("Department: " + worker.Department.Name);
-            Console.WriteLine($"Income for {month}/{year}: " + worker.Income(year, month));
+            Console.WriteLine($"Income for {month}/{year}: " + worker.Income(year, month).ToString("F2", CultureInfo.InvariantCulture));
         }
     }
 }

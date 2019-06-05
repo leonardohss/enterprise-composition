@@ -13,7 +13,7 @@ namespace EnterpriseComposition.Entities
         public List<HourContract> Contracts { get; set; } = new List<HourContract>();
         //propriedade que representa que o trabalhador tem varios contratos
 
-        public Worker() { }
+        public Worker( ) { }
 
         public Worker(string name, WorkerLevel level, double baseSalary, Department department)
         {
